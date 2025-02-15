@@ -1,0 +1,10 @@
+﻿@model ShareItems_WebApp.Entities.UserCredential;
+@{
+    ViewData["Title"] = "Enter Code";
+}
+
+<form method="post" asp-action="Index">
+    <label>Enter Code:</label>
+    <input type="text" name="Code" required />
+    <button type="submit">Go</button>
+</form>

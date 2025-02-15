@@ -1,0 +1,73 @@
+﻿@using ShareItems_WebApp.Services;
+@model ShareItems_WebApp.Entities.UserCredential;
+@{
+    ViewData["Title"] = "Edit Snippet";
+}
+
+<h2>@Model.code</h2>
+<form method="post" asp-action="Save">
+    <input type="hidden" name="code" value="@Model.code" />
+    <textarea name="matter" rows="10" cols="50" >@Model.matter</textarea>
+     <button type="submit">Save</button>
+</form>
+<form method="post" asp-action="Index">
+    <button type="submit">Exit</button>
+</form>
+
+@if (Model.secondaryPassword == null)
+{
+    <button onclick="showLockModal()">Set Secondary Lock</button>
+
+    <div id="lockModal" style="display:none; position:fixed; top:30%; left:40%; padding:20px; background:white; border:1px solid black;">
+        <h3>Enter 4-Digit PIN</h3>
+        <form asp-action="CreateSecondaryLock" method="post">
+            <input type="hidden" id="modalCode" name="Code" value="@Model.code" />
+            <input type="password" name="Pin" maxlength="4" required />
+            <br />
+            <button type="submit">Confirm</button>
+            <button type="button" onclick="closeLockModal()">Cancel</button>
+        </form>
+    </div>
+}
+else
+{
+    <button onclick="showLockModal()">Set Secondary Lock</button>
+
+    <div id="lockModal" style="display:none; position:fixed; top:30%; left:40%; padding:20px; background:white; border:1px solid black;">
+        <h2>You have a existing pin</h2>
+        <form asp-action="UpdateSecondaryPassword" method="post">
+            <button type="button" onclick="closeLockModal()">Update</button>
+        </form>
+
+        <form asp-action="DeleteSecondaryPassword" method="post">
+            <input type="hidden" name="Code" value="@Model.code" />
+            <button type="submit">Delete</button>
+            <p style="color:red">@ViewBag.Message</p>
+        </form>
+
+        <form asp-action="ExitToAccessItems" method="post">
+            <input type="hidden" name="Code" value="@Model.code" />
+            <button type="submit" onclick="closeLockModal()">Exit</button>
+        </form>
+    </div>
+}
+
+<form method="post" asp-action="DestroyNote">
+    <input type="hidden" name="Code" value="@Model.code" />
+    <button type="submit">Destroy Note</button>
+</form>
+
+<form method="post" asp-action="OpenActivityLog">
+    <input type="hidden" name="Code" value="@Model.code" />
+    <button type="submit">Open Activity Log</button>
+</form>
+
+<script>
+    function showLockModal() {
+        document.getElementById('lockModal').style.display = 'block';
+    }
+
+    function closeLockModal() {
+        document.getElementById('lockModal').style.display = 'none';
+    }
+</script>

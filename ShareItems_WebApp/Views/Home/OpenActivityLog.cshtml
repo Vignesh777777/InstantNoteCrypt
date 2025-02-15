@@ -1,0 +1,13 @@
+﻿@model ShareItems_WebApp.Entities.UserCredential
+
+@foreach(var activity in Model.dateTimes)
+{
+    <div>
+        <h4>Accessed on @activity.ToString()</h4>
+    </div>
+}
+
+<form method="post" asp-action="AccessToItems">
+    <input type="hidden" name="Code" value="@Model.code" />
+    <button type="submit">Go Back</button>
+</form>
