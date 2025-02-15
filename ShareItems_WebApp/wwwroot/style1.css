@@ -1,0 +1,145 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: url('bluecode.gif') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.navbar {
+    background-color: black;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .navbar .logo {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .navbar .nav-links {
+        display: flex;
+        gap: 20px;
+    }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+            .navbar .nav-links a:hover {
+                text-decoration: underline;
+            }
+
+/* Main Container */
+.container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-area-container {
+    background-color: rgba(0, 80, 90, 0.9);
+    padding: 30px;
+    border-radius: 25px;
+    width: 50%;
+    position: relative;
+}
+
+.mode-switch {
+    position: absolute;
+    top: 5px;
+    left: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+    .mode-switch button {
+        padding: 3px 5px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: white;
+        color: black;
+    }
+
+textarea {
+    width: 95%;
+    height: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    resize: none;
+    font-size: 16px;
+}
+
+.char-count {
+    color: white;
+    font-size: 14px;
+    text-align: left;
+    margin-top: 5px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.save-btn {
+    background-color: white;
+    color: black;
+}
+
+.close-btn {
+    background-color: grey;
+    color: white;
+}
+
+.destroy-btn {
+    background-color: red;
+    color: white;
+}
+
+/* Left & Right Side Panels */
+.side-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    left: 10%;
+}
+
+.side-buttons-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    right: 10%;
+}
+
+.side-button {
+    width: 120px;
+    padding: 15px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 5px solid #004850;
+}
