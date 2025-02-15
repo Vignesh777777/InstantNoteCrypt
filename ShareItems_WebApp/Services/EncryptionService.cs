@@ -31,4 +31,24 @@ public class EncryptionService : IEncryptionService
             return $"Decryption failed: {ex.Message}";
         }
     }
+
+    // Method to encrypt byte array data
+    public byte[] EncryptData(byte[] plainData)
+    {
+        return _protector.Protect(plainData);
+    }
+
+    // Method to decrypt byte array data
+    public byte[] DecryptData(byte[] encryptedData)
+    {
+        try
+        {
+            return _protector.Unprotect(encryptedData);
+        }
+        catch (Exception ex)
+        {
+            // If decryption fails (e.g., data is tampered or invalid), handle the exception
+            throw new Exception($"Decryption failed: {ex.Message}", ex);
+        }
+    }
 }

@@ -5,6 +5,7 @@ using ShareItems_WebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+builder.Services.AddSingleton<IEncryptionService, EncryptionService>();
 builder.Services.AddDataProtection();
 builder.Services.AddControllersWithViews();
 

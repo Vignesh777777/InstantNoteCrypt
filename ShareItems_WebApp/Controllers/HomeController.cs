@@ -7,10 +7,12 @@ namespace ShareItems_WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly UserContext _userContext;
+        private readonly IEncryptionService _encryptionService;
 
-        public HomeController(UserContext userContext)
+        public HomeController(UserContext userContext, IEncryptionService encryptionService)
         {
             _userContext = userContext;
+            _encryptionService = encryptionService;
         }
         public IActionResult Index()
         {
@@ -48,10 +50,11 @@ namespace ShareItems_WebApp.Controllers
                 _userContext.SaveChanges();
                 return View(model);
             }
-                entry.dateTimes.Add(DateTime.Now);
-                _userContext.UserCredentials.Update(entry);
-                _userContext.SaveChanges();
-                return View(entry);
+            entry.dateTimes.Add(DateTime.Now);
+            _userContext.UserCredentials.Update(entry);
+            _userContext.SaveChanges();
+            entry.matter = _encryptionService.DecryptData(entry.matter);
+            return View(entry);
         }
         [HttpPost]
         public IActionResult Save(UserCredential model)
@@ -59,7 +62,7 @@ namespace ShareItems_WebApp.Controllers
             var entry = _userContext.UserCredentials.FirstOrDefault(x => x.code.Equals(model.code));
             if (entry != null)
             {
-                entry.matter = model.matter;
+                entry.matter = _encryptionService.EncryptData(model.matter);
                 _userContext.UserCredentials.Update(entry);
                 _userContext.SaveChanges();
             }
@@ -69,7 +72,7 @@ namespace ShareItems_WebApp.Controllers
         public IActionResult CreateSecondaryLock(string Code,string Pin)
         {
             var entry = _userContext.UserCredentials.FirstOrDefault(x => x.code.Equals(Code));
-            entry.secondaryPassword = Pin;
+            entry.secondaryPassword = _encryptionService.EncryptData(Pin);
             _userContext.Update(entry);
             _userContext.SaveChanges();
             return RedirectToAction("Index");
@@ -88,7 +91,8 @@ namespace ShareItems_WebApp.Controllers
         public IActionResult CheckSecondaryPassword(string Code,string Pin)
         {
             var entry = _userContext.UserCredentials.FirstOrDefault(x => x.code.Equals(Code));
-            if (entry.secondaryPassword.Equals(Pin))
+            string decryptedPin = _encryptionService.DecryptData(entry.secondaryPassword);
+            if (decryptedPin.Equals(Pin))
             {
                 return RedirectToAction("AccessToItems", new { Code });
             }

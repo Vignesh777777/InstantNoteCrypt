@@ -2,7 +2,9 @@
 {
     public interface IEncryptionService
     {
-        public string EncryptData(string plainText);
-        public string DecryptData(string plainText);
+        string EncryptData(string plainText);
+        string DecryptData(string encryptedData);
+        byte[] EncryptData(byte[] plainData);
+        byte[] DecryptData(byte[] encryptedData);
     }
 }
