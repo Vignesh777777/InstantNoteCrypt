@@ -19,7 +19,7 @@
     <button onclick="showLockModal()">Set Secondary Lock</button>
 
     <div id="lockModal" style="display:none; position:fixed; top:30%; left:40%; padding:20px; background:white; border:1px solid black;">
-        <h3>Enter 4-Digit PIN</h3>
+        <h3>Enter PIN</h3>
         <form asp-action="CreateSecondaryLock" method="post">
             <input type="hidden" id="modalCode" name="Code" value="@Model.code" />
             <input type="password" name="Pin" maxlength="4" required />
@@ -35,9 +35,6 @@ else
 
     <div id="lockModal" style="display:none; position:fixed; top:30%; left:40%; padding:20px; background:white; border:1px solid black;">
         <h2>You have a existing pin</h2>
-        <form asp-action="UpdateSecondaryPassword" method="post">
-            <button type="button" onclick="closeLockModal()">Update</button>
-        </form>
 
         <form asp-action="DeleteSecondaryPassword" method="post">
             <input type="hidden" name="Code" value="@Model.code" />

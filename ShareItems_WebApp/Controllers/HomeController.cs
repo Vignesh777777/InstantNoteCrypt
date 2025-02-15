@@ -75,7 +75,7 @@ namespace ShareItems_WebApp.Controllers
             entry.secondaryPassword = _encryptionService.EncryptData(Pin);
             _userContext.Update(entry);
             _userContext.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AccessToItems", new {Code});
         }
 
         public IActionResult VerifySecondaryPassword(string Code)
@@ -96,16 +96,16 @@ namespace ShareItems_WebApp.Controllers
             {
                 return RedirectToAction("AccessToItems", new { Code });
             }
-
-            return RedirectToAction("Index");
+            return View("CheckSecondaryPassword",entry);
         }
-        public void DeleteSecondaryPassword(string Code)
+        public IActionResult DeleteSecondaryPassword(string Code)
         {
             var entry = _userContext.UserCredentials.FirstOrDefault(x => x.code.Equals(Code));
             entry.secondaryPassword = null;
             _userContext.Update(entry);
             _userContext.SaveChanges();
             ViewBag.Message = "Secondary Password removed.";
+            return RedirectToAction("AccessToItems", new { Code });
         }
         public IActionResult DestroyNote(string Code)
         {
@@ -123,6 +123,10 @@ namespace ShareItems_WebApp.Controllers
         public IActionResult ExitToAccessItems(string Code)
         {
             return RedirectToAction("AccessToItems", new { Code });
+        }
+        public IActionResult ExitToIndex()
+        {
+            return RedirectToAction("Index");
         }
     }
 }
