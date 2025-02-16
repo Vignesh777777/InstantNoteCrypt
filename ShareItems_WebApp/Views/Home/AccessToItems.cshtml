@@ -50,7 +50,6 @@
 </head>
 <body>
 
-    <!-- Navbar -->
     <div class="navbar">
         <div class="logo">InstantNoteCrypt</div>
         <div class="nav-links">
@@ -60,7 +59,6 @@
     </div>
 
     <div class="container">
-        <!-- Left Side Buttons -->
         <div class="side-buttons">
             <button class="side-button">Set Secondary Lock</button>
             <button class="side-button">Download PDF</button>
@@ -73,12 +71,13 @@
                 <button>Reading View</button>
             </div>
             <form method="post" asp-action="Save">
-                <textarea id="noteText" name="matter" oninput="updateCharCount()"></textarea>
+                <input type="hidden" name="Code" value="@Model.code" />
+                <textarea id="noteText" name="matter" oninput="updateCharCount()">@Model.matter</textarea>
                 <div class="char-count">char count <span id="charCount">0</span>/50000</div>
                 <div class="button-container">
                     <button type="submit" class="save-btn">Save</button>
-                    <button type="button" class="close-btn">Close</button>
-                    <button type="submit" class="destroy-btn">Destroy Note</button>
+                    <button type="submit" asp-action="ExitToIndex" class="close-btn">Close</button>
+                    <button type="submit" asp-action="DestroyNote" class="destroy-btn">Destroy Note</button>
                 </div>
             </form>
         </div>
