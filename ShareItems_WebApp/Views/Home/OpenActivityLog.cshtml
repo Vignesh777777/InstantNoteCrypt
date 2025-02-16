@@ -1,11 +1,15 @@
 ﻿@model ShareItems_WebApp.Entities.UserCredential
 
-@foreach(var activity in Model.dateTimes)
+
 {
-    <div>
-        <h4>Accessed on @activity.ToString()</h4>
+<div class="list-container">
+    <ul class="list-group">
+        @foreach (var activity in Model.dateTimes)
+        {
+            <li class="list-group-item">@activity.ToString()</li>
+        }
+        </ul>
     </div>
-}
 
 <form method="post" asp-action="AccessToItems">
     <input type="hidden" name="Code" value="@Model.code" />

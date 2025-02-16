@@ -159,3 +159,28 @@ button {
     color: white;
     margin-left: -10px;
 }
+.toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+    .toggle-buttons button {
+        margin: 5px;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        background: white;
+        border-radius: 10px;
+    }
+
+.reading-view {
+    display: none;
+    padding: 15px;
+    background: white;
+    color: black;
+    border-radius: 5px;
+    min-height: 200px;
+    text-align: left;
+    white-space: pre-wrap;
+}

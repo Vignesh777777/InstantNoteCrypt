@@ -96,6 +96,7 @@ namespace ShareItems_WebApp.Controllers
             {
                 return RedirectToAction("AccessToItems", new { Code });
             }
+            ViewBag.Message = "Invalid Pin";
             return View("CheckSecondaryPassword",entry);
         }
         public IActionResult DeleteSecondaryPassword(string Code)

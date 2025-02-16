@@ -72,13 +72,15 @@
                 <button class="close-btn" onclick="hidePinInput()">Close</button>
             </div>
             <button class="side-button">Download PDF</button>
-            <button class="side-button">Open Activity Log</button>
+            <form method="post" asp-action="OpenActivityLog">
+                <input type="hidden" name="Code" value="@Model.code" />
+                <button type="submit" class="side-button">Open Activity Log</button>
+            </form>
         </div>
 
         <div class="text-area-container">
             <div class="mode-switch">
                 <button>Editing View</button>
-                <button>Reading View</button>
             </div>
             <form method="post" asp-action="Save">
                 <input type="hidden" name="Code" value="@Model.code" />

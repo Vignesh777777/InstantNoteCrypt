@@ -192,3 +192,50 @@ textarea {
     background-color: red;
     color: white;
 }
+.list-container {
+    width: 400px;
+    padding: 20px;
+    background: #282a36;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #f8f8f2;
+}
+
+/* List Styles */
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    background: #44475a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+    .list-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+.icon {
+    font-size: 20px;
+    margin-right: 15px;
+    color: #50fa7b;
+}
+
+.text {
+    flex: 1;
+    font-size: 18px;
+    color: #f8f8f2;
+}
