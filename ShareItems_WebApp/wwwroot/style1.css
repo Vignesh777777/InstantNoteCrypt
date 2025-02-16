@@ -143,3 +143,19 @@ button {
     font-size: 14px;
     border: 5px solid #004850;
 }
+
+.pin-input {
+    display: none;
+}
+.button-container {
+    margin-top: 10px;
+}
+.set-lock {
+    background: #4CAF50;
+    color: white;
+}
+.submit-btn {
+    background: blue;
+    color: white;
+    margin-left: -10px;
+}

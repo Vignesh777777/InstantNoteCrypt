@@ -60,7 +60,17 @@
 
     <div class="container">
         <div class="side-buttons">
-            <button class="side-button">Set Secondary Lock</button>
+            <button class="side-button" onclick="showPinInput()">Set Secondary Lock</button>
+            <div id="pin-section" class="pin-input">
+                <form method="post" asp-action="CreateSecondaryLock">
+                <input type="hidden" name="Code" value="@Model.code" />
+                <input type="password" id="pin" name="Pin" placeholder="Enter 4-digit PIN" maxlength="4">
+                <br />
+                <br />
+                <button class="submit-btn" type="submit" onclick="submitPin()">Submit</button>
+                </form>
+                <button class="close-btn" onclick="hidePinInput()">Close</button>
+            </div>
             <button class="side-button">Download PDF</button>
             <button class="side-button">Open Activity Log</button>
         </div>
@@ -82,7 +92,6 @@
             </form>
         </div>
 
-        <!-- Right Side Info Panels -->
         <div class="side-buttons-right">
             <div class="side-button">Entire project is built in asp.net core.</div>
             <div class="side-button">All the data is being encrypted, don’t worry.</div>
@@ -97,6 +106,22 @@
         }
 
         document.addEventListener("DOMContentLoaded", updateCharCount);
+
+        function showPinInput() {
+            document.getElementById('pin-section').style.display='block';
+        }
+        function submitPin() {
+            let pin = document.getElementById('pin').value;
+            if (pin.length < 4) {
+                alert('PIN must be at least 4 digits long.');
+                return;
+            }
+            alert('PIN Set: ' + pin);
+            document.getElementById('pin-section').style.display = 'none';
+        }
+        function hidePinInput() {
+            document.getElementById('pin-section').style.display = 'none';
+        }
     </script>
 
 </body>
